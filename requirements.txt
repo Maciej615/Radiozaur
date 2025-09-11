@@ -1,0 +1,11 @@
+# GUI
+ttkbootstrap==1.3.1       # motywy i przyciski dla Tkinter
+tk                     # Tkinter jest standardowo w Pythonie, ale czasem potrzebny w pip (dla niektórych OS)
+
+# HTTP / API
+requests==2.31.0       # do pobierania danych z internetu (opcjonalnie, w razie rozszerzenia)
+
+# Obsługa mpv
+python-mpv==1.9.0      # do odtwarzania strumieni radiowych w Pythonie
+
+# JSON, os, subprocess itp. są w standardowej bibliotece → nie wymagają pip
