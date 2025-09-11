@@ -3,7 +3,7 @@
 🎵 Radiozaur – odtwarzacz internetowych stacji radiowych
 =====================================================
 
-Autor: Maciek
+Autor: Maciej
 Licencja: CC BY-NC 4.0
 (https://creativecommons.org/licenses/by-nc/4.0/)
 
@@ -11,7 +11,8 @@ Opis:
 ------
 Radiozaur to prosty odtwarzacz internetowych stacji radiowych napisany w Pythonie.
 Projekt stworzony w celu nauki, zabawy oraz jako pokaz umiejętności programistycznych.
-
+Tuaj do pobrania:
+https://github.com/Maciej615/Radiozaur/releases/download/1.0/radiozaur.exe
 ⚠ Wymagania:
 -------------
 - Python 3.10+ 
