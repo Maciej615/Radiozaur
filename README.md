@@ -19,3 +19,6 @@ Projekt stworzony w celu nauki, zabawy oraz jako pokaz możliwości moich projek
 
 *(Tutaj możesz dodać zrzuty ekranu aplikacji np. w folderze `screenshots`)*
 
+## 📜 Licencja
+Projekt udostępniany na licencji [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+Do użytku niekomercyjnego, z obowiązkiem podania autora.
