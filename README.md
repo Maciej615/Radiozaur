@@ -1,48 +1,109 @@
-"""
-=====================================================
-🎵 Radiozaur – odtwarzacz internetowych stacji radiowych
-=====================================================
+# 🎵 Radiozaur
 
-Autor: Maciej
-Licencja: CC BY-NC 4.0
-(https://creativecommons.org/licenses/by-nc/4.0/)
+Radiozaur to prosty odtwarzacz internetowych stacji radiowych napisany w Pythonie.  
+Powstał w celach edukacyjnych – jako projekt do nauki i zabawy, a także jako pokaz umiejętności programistycznych.
 
-Opis:
-------
-Radiozaur to prosty odtwarzacz internetowych stacji radiowych napisany w Pythonie.
-Projekt stworzony w celu nauki, zabawy oraz jako pokaz umiejętności programistycznych.
-Plik do pobrania:
-https://github.com/Maciej615/Radiozaur/releases/download/1.0/radiozaur.exe
-⚠ Wymagania:
--------------
-- Python 3.10+ 
-- Plik mpv.exe dostępny w PATH lub wskazany ręcznie w konfiguracji
-- Biblioteki Python: python-mpv, ttkbootstrap
-- Plik ikony (opcjonalnie): radiozaur.ico
+---
 
-Funkcje:
---------
-- Odtwarzanie stacji radiowych przy użyciu mpv.exe
-- Kilkanaście wbudowanych stacji startowych
-- Wyszukiwanie i dodawanie nowych stacji
-- Lekki interfejs Tkinter z motywem ttkbootstrap
-- Obsługa listy ulubionych stacji
-- Zapis konfiguracji ścieżki do mpv.exe
+## ✨ Funkcje
+- 🎶 Odtwarzanie stacji radiowych przy użyciu `mpv`  
+- 📻 Kilka wbudowanych stacji startowych  
+- 🔎 Wyszukiwanie i dodawanie nowych stacji z [Radio-Browser](https://www.radio-browser.info/)  
+- ⭐ Obsługa listy ulubionych stacji  
+- 🎨 Lekki interfejs Tkinter z motywem `ttkbootstrap`  
+- 💾 Zapis konfiguracji (ścieżka do `mpv`, ulubione)  
 
-Instalacja:
------------
-1. Zainstaluj wymagane biblioteki:
+---
+
+## 📥 Pobierz
+👉 [Najnowsza wersja Radiozaura (EXE dla Windows)](../../releases/latest)
+
+---
+
+## ⚙️ Instalacja
+
+### 1. Uruchomienie z Pythona (wersja źródłowa)
+1. Pobierz repozytorium:
+   ```bash
+   git clone https://github.com/<twoj_login>/radiozaur.git
+   cd radiozaur
+````
+
+2. Zainstaluj wymagane biblioteki:
+
+   ```bash
    pip install -r requirements.txt
-   lub ręcznie:
-   pip install python-mpv ttkbootstrap
+   ```
+3. Uruchom aplikację:
 
-2. Uruchom aplikację:
+   ```bash
    python radiozaur.py
-   (przy pierwszym uruchomieniu wskaż ścieżkę do mpv.exe, jeśli nie jest w PATH)
+   ```
 
-Kompilacja do EXE (Windows, Nuitka):
--------------------------------------
+---
+
+### 2. Wersja EXE (Windows)
+
+1. Pobierz plik `Radiozaur.exe` z [Releases](../../releases/latest).
+2. Upewnij się, że w systemie jest dostępny `mpv.exe` (można pobrać z [mpv.io](https://mpv.io/)).
+3. Umieść `mpv.exe` w tym samym katalogu co `Radiozaur.exe`.
+4. Uruchom `Radiozaur.exe`.
+
+---
+
+### 3. Kompilacja własna (Nuitka)
+
+Możesz samodzielnie zbudować plik EXE:
+
+```bash
 nuitka --onefile --enable-plugin=tk-inter --windows-icon-from-ico=radiozaur.ico --windows-console-mode=disable radiozaur.py
+```
 
-Po kompilacji powstanie radiozaur.exe, gotowy do uruchomienia.
-"""
+---
+
+## ❓ FAQ
+
+### 1. Nie działa odtwarzanie
+
+Sprawdź, czy w katalogu aplikacji znajduje się `mpv.exe`.
+Radiozaur korzysta z odtwarzacza MPV jako backendu.
+
+---
+
+### 2. Jak uruchomić nową stację?
+
+W aplikacji wpisz nazwę stacji i kliknij „🔍 Szukaj stacji”,
+a następnie wybierz ją z listy i kliknij „▶️ Odtwórz”.
+
+---
+
+### 3. Czy działa na Linux/Mac?
+
+Tak, w wersji źródłowej (Python). Potrzebny jest tylko zainstalowany `mpv`.
+
+---
+
+### 4. Dlaczego exe jest tak duże?
+
+Nuitka pakuje cały interpreter Pythona i biblioteki w jeden plik, dlatego exe ma kilkadziesiąt MB.
+
+---
+
+## 📜 Licencja
+
+Radiozaur – odtwarzacz internetowych stacji radiowych
+Autor: **Maciek**
+
+Projekt dostępny na licencji: **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**
+
+👉 Szczegóły: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
+
+### Warunki licencji:
+
+* ✅ Możesz używać, kopiować i modyfikować projekt
+* ✅ Możesz udostępniać własne modyfikacje (z podaniem autora)
+* ❌ Nie wolno używać projektu w celach komercyjnych
+
+
+```
+
