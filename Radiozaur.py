@@ -12,11 +12,41 @@ import logging
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
+# --- Tłumaczenia ---
+translations = {
+    "pl": {
+        "title": "🎵 Radiozaur",
+        "search": "🔍 Szukaj stacji",
+        "play": "▶️ Odtwórz wybraną stację",
+        "stop": "⏹ Stop",
+        "resume": "⏯ Wznów",
+        "stream_label": "🎧 Adres strumienia: ",
+        "no_station": "Nie ma stacji do wznowienia.",
+        "no_results": "Nie znaleziono stacji.",
+        "mpv_error": "Nie można uruchomić odtwarzacza",
+        "select_mpv": "Nie wybrano poprawnej ścieżki do mpv.exe. Aplikacja zostanie zamknięta."
+    },
+    "en": {
+        "title": "🎵 Radiozaur",
+        "search": "🔍 Search station",
+        "play": "▶️ Play selected station",
+        "stop": "⏹ Stop",
+        "resume": "⏯ Resume",
+        "stream_label": "🎧 Stream URL: ",
+        "no_station": "No station to resume.",
+        "no_results": "No stations found.",
+        "mpv_error": "Cannot run MPV player",
+        "select_mpv": "No valid path to mpv.exe selected. App will close."
+    }
+}
 
+current_lang = "pl"  # domyślny język
+
+# --- Radiozaur App ---
 class RadiozaurApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("🎵 Radiozaur")
+        self.root.title(translations[current_lang]["title"])
         self.root.geometry("460x520")
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
@@ -30,10 +60,7 @@ class RadiozaurApp:
         self.paused_station_url = None
         self.player_path = None
 
-        # GUI od razu
         self.setup_gui()
-
-        # sprawdzenie mpv z opóźnieniem
         self.root.after(500, self.init_player)
 
     def save_path_to_config(self, file_path):
@@ -46,7 +73,7 @@ class RadiozaurApp:
                 with open("config.json", "r") as f:
                     return json.load(f).get("mpv_path")
             except Exception as e:
-                logging.error("Błąd odczytu config.json", exc_info=True)
+                logging.error("Error reading config.json", exc_info=True)
         return None
 
     def get_mpv_path(self):
@@ -60,8 +87,8 @@ class RadiozaurApp:
             return auto_path
 
         manual_path = filedialog.askopenfilename(
-            title="Wybierz plik mpv.exe",
-            filetypes=[("Pliki wykonywalne", "*.exe")]
+            title="Select mpv.exe",
+            filetypes=[("Executable files", "*.exe")]
         )
         if manual_path and "mpv" in os.path.basename(manual_path).lower():
             self.save_path_to_config(manual_path)
@@ -69,31 +96,34 @@ class RadiozaurApp:
         return None
 
     def init_player(self):
-        """Opóźnione sprawdzenie i wybór mpv.exe"""
         self.player_path = self.get_mpv_path()
         if not self.player_path:
-            messagebox.showerror("Błąd", "Nie wybrano poprawnej ścieżki do mpv.exe. Aplikacja zostanie zamknięta.")
+            messagebox.showerror("Error", translations[current_lang]["select_mpv"])
             self.root.after(100, self.root.destroy)
 
     def setup_gui(self):
         frame = ttk.Frame(self.root, padding=10)
         frame.pack(fill="both", expand=True)
 
-        self.entry_search = ttk.Entry(frame, width=40)
+        # --- język ---
+        self.btn_lang = ttk.Button(self.root, text=current_lang.upper(), width=4, command=self.switch_language)
+        self.btn_lang.place(relx=1.0, x=-10, y=15, anchor="ne")
+
+        self.entry_search = ttk.Entry(frame, width=30)
         self.entry_search.pack(pady=5)
         self.entry_search.bind("<Return>", lambda e: self.on_search())
         self.entry_search.focus_set()
 
-        btn_search = ttk.Button(frame, text="🔍 Szukaj stacji", bootstyle=PRIMARY, command=self.on_search)
+        btn_search = ttk.Button(frame, text=translations[current_lang]["search"], bootstyle=PRIMARY, command=self.on_search)
         btn_search.pack(pady=5)
+        self.btn_search = btn_search
 
-        # Treeview + scrollbar
         tree_frame = ttk.Frame(frame)
         tree_frame.pack(pady=5, fill="both", expand=True)
 
         self.tree = ttk.Treeview(tree_frame, columns=("name", "country"), show="headings", height=10, bootstyle=INFO)
-        self.tree.heading("name", text="📻 Stacja")
-        self.tree.heading("country", text="🌍 Kraj")
+        self.tree.heading("name", text="📻 Station")
+        self.tree.heading("country", text="🌍 Country")
         self.tree.column("name", anchor="w", width=280)
         self.tree.column("country", anchor="center", width=80)
         self.tree.pack(side="left", fill="both", expand=True)
@@ -107,16 +137,31 @@ class RadiozaurApp:
 
         self.tree.bind("<Double-Button-1>", self.on_tree_select)
 
-        btn_play = ttk.Button(frame, text="▶️ Odtwórz wybraną stację", bootstyle=SUCCESS, command=self.on_tree_select)
+        btn_play = ttk.Button(frame, text=translations[current_lang]["play"], bootstyle=SUCCESS, command=self.on_tree_select)
         btn_play.pack(pady=5)
+        self.btn_play = btn_play
 
-        self.btn_toggle = ttk.Button(frame, text="⏹ Stop", bootstyle=WARNING, command=self.toggle_playback)
+        self.btn_toggle = ttk.Button(frame, text=translations[current_lang]["stop"], bootstyle=WARNING, command=self.toggle_playback)
         self.btn_toggle.pack(pady=5)
 
-        self.label_url = ttk.Label(frame, text="🎧 Adres strumienia: ", bootstyle=INFO, anchor="center", wraplength=420)
+        self.label_url = ttk.Label(frame, text=translations[current_lang]["stream_label"], bootstyle=INFO, anchor="center", wraplength=420)
         self.label_url.pack(pady=10)
 
-        self.root.after(300, lambda: self.entry_search.focus_force())
+    def switch_language(self):
+        global current_lang
+        current_lang = "en" if current_lang == "pl" else "pl"
+        self.btn_lang.config(text=current_lang.upper())
+        self.update_texts()
+
+    def update_texts(self):
+        self.root.title(translations[current_lang]["title"])
+        self.btn_search.config(text=translations[current_lang]["search"])
+        self.btn_play.config(text=translations[current_lang]["play"])
+        if self.current_process:
+            self.btn_toggle.config(text=translations[current_lang]["stop"])
+        else:
+            self.btn_toggle.config(text=translations[current_lang]["resume"])
+        self.label_url.config(text=translations[current_lang]["stream_label"])
 
     def play_stream(self, url):
         if self.current_process:
@@ -124,7 +169,7 @@ class RadiozaurApp:
             self.current_process = None
 
         try:
-            self.label_url.config(text=f"🎧 Adres strumienia: {url}")
+            self.label_url.config(text=f"{translations[current_lang]['stream_label']} {url}")
             command = [self.player_path, "--no-video", "--quiet", url]
 
             self.current_process = subprocess.Popen(
@@ -133,22 +178,22 @@ class RadiozaurApp:
                 stderr=subprocess.DEVNULL
             )
             self.paused_station_url = url
-            self.btn_toggle.config(text="⏹ Stop")
+            self.btn_toggle.config(text=translations[current_lang]["stop"])
 
         except Exception as e:
-            logging.error("Błąd uruchamiania MPV", exc_info=True)
-            messagebox.showerror("Błąd", f"Nie można uruchomić odtwarzacza:\n{e}")
+            logging.error("MPV error", exc_info=True)
+            messagebox.showerror("Error", f"{translations[current_lang]['mpv_error']}:\n{e}")
 
     def toggle_playback(self):
         if self.current_process:
             self.current_process.terminate()
             self.current_process = None
-            self.label_url.config(text="⏸ Odtwarzanie zatrzymane")
-            self.btn_toggle.config(text="⏯ Wznów")
+            self.label_url.config(text="⏸ Playback stopped")
+            self.btn_toggle.config(text=translations[current_lang]["resume"])
         elif self.paused_station_url:
             self.play_stream(self.paused_station_url)
         else:
-            messagebox.showinfo("Info", "Nie ma stacji do wznowienia.")
+            messagebox.showinfo("Info", translations[current_lang]["no_station"])
 
     def search_stations_by_name(self, query, limit=20):
         query_encoded = urllib.parse.quote(query)
@@ -163,8 +208,8 @@ class RadiozaurApp:
                     country = item.get('countrycode', '??')
                     results.append((name, stream, country))
         except Exception as e:
-            logging.error("Błąd wyszukiwania stacji", exc_info=True)
-            messagebox.showerror("Błąd", f"Nie udało się wyszukać stacji:\n{e}")
+            logging.error("Station search error", exc_info=True)
+            messagebox.showerror("Error", f"Station search failed:\n{e}")
         return results
 
     def on_tree_select(self, event=None):
@@ -188,10 +233,10 @@ class RadiozaurApp:
                 for name, _, country in self.stations_list:
                     self.tree.insert("", "end", values=(name, country))
             else:
-                messagebox.showinfo("Brak wyników", "Nie znaleziono stacji.")
+                messagebox.showinfo("Info", translations[current_lang]["no_results"])
         except Exception as e:
-            logging.error("Błąd w wyszukiwaniu", exc_info=True)
-            messagebox.showerror("Błąd", f"Wyszukiwanie nie działa:\n{e}")
+            logging.error("Search error", exc_info=True)
+            messagebox.showerror("Error", f"Search failed:\n{e}")
 
     def on_close(self):
         if self.current_process:
@@ -204,3 +249,6 @@ if __name__ == "__main__":
     app = RadiozaurApp(root)
     root.iconbitmap("radiozaur2.ico")  # plik .ico
     root.mainloop()
+
+
+“Added bilingual interface and language switch”
