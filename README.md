@@ -56,7 +56,7 @@ Powstał w celach edukacyjnych – jako projekt do nauki i zabawy, a także jako
 Możesz samodzielnie zbudować plik EXE:
 
 ```bash
-nuitka --onefile --enable-plugin=tk-inter --windows-icon-from-ico=radiozaur.ico --windows-console-mode=disable radiozaur.py
+nuitka --onefile --windows-icon-from-ico=radiozaur.ico --windows-console-mode=disable --enable-plugin=tk-inter radiozaur.py
 ```
 
 ---
