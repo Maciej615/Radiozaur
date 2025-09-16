@@ -8,10 +8,10 @@ Powstał w celach edukacyjnych – jako projekt do nauki i zabawy, a także jako
 ## ✨ Funkcje
 - 🎶 Odtwarzanie stacji radiowych przy użyciu `mpv`  
 - 📻 Kilka wbudowanych stacji startowych  
-- 🔎 Wyszukiwanie i dodawanie nowych stacji z [Radio-Browser](https://www.radio-browser.info/)  
-- ⭐ Obsługa listy ulubionych stacji  
+- 🔎 Wyszukiwanie nowych stacji z [Radio-Browser](https://www.radio-browser.info/)  
 - 🎨 Lekki interfejs Tkinter z motywem `ttkbootstrap`  
-- 💾 Zapis konfiguracji (ścieżka do `mpv`, ulubione)  
+- 💾 Zapis konfiguracji (ścieżka do `mpv`, ulubione)
+-  Przełącznik języka PL/EN
 
 ---
 
@@ -85,7 +85,7 @@ Tak, w wersji źródłowej (Python). Potrzebny jest tylko zainstalowany `mpv`.
 
 ### 4. Dlaczego exe jest tak duże?
 
-Nuitka pakuje cały interpreter Pythona i biblioteki w jeden plik, dlatego exe ma kilkadziesiąt MB.
+Nuitka pakuje cały interpreter Pythona i biblioteki w jeden plik, dlatego exe ma kilkanaście MB.
 
 ---
 
