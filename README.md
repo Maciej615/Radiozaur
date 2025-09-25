@@ -17,7 +17,7 @@ Prosty i lekki odtwarzacz internetowych stacji radiowych napisany w Pythonie.
   * **📻 Wbudowane stacje** — Zawiera listę gotowych stacji, abyś mógł zacząć słuchać od razu po uruchomieniu.
   * **🔎 Wyszukiwarka stacji** — Zintegrowana z bazą [Radio-Browser](https://www.radio-browser.info/), daje dostęp do tysięcy stacji z całego świata.
   * **🎨 Lekki interfejs** — Szybki i prosty interfejs oparty na Tkinter z nowoczesnym motywem `ttkbootstrap`.
-  * **💾 Zapisywanie ustawień** — Aplikacja zapamiętuje Twoje ulubione stacje oraz ścieżkę do odtwarzacza `mpv`.
+  * **💾 Zapisywanie ustawień** — Aplikacja zapamiętuje ścieżkę do odtwarzacza `mpv`.
   * **🌍 Dwa języki interfejsu** — Możliwość przełączania między językiem polskim (PL) a angielskim (EN).
 
 -----
