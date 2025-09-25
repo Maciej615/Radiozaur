@@ -1,109 +1,118 @@
+
+-----
+
 # 🎵 Radiozaur
 
-Radiozaur to prosty odtwarzacz internetowych stacji radiowych napisany w Pythonie.  
-Powstał w celach edukacyjnych – jako projekt do nauki i zabawy, a także jako pokaz umiejętności programistycznych.
+Prosty i lekki odtwarzacz internetowych stacji radiowych napisany w Pythonie.
 
----
+<br>
 
-## ✨ Funkcje
-- 🎶 Odtwarzanie stacji radiowych przy użyciu `mpv`  
-- 📻 Kilka wbudowanych stacji startowych  
-- 🔎 Wyszukiwanie nowych stacji z [Radio-Browser](https://www.radio-browser.info/)  
-- 🎨 Lekki interfejs Tkinter z motywem `ttkbootstrap`  
-- 💾 Zapis konfiguracji (ścieżka do `mpv`, ulubione)
--  Przełącznik języka PL/EN
+**Radiozaur** powstał jako projekt edukacyjny – stworzony do nauki i zabawy, a jednocześnie będący demonstracją umiejętności programistycznych.
 
----
+-----
 
-## 📥 Pobierz
-👉 [Najnowsza wersja Radiozaura (EXE dla Windows)](../../releases/latest)
+## ✨ Główne Funkcje
 
----
+  * **🎶 Płynne odtwarzanie** — Wykorzystuje potężny silnik `mpv` do odtwarzania strumieni radiowych.
+  * **📻 Wbudowane stacje** — Zawiera listę gotowych stacji, abyś mógł zacząć słuchać od razu po uruchomieniu.
+  * **🔎 Wyszukiwarka stacji** — Zintegrowana z bazą [Radio-Browser](https://www.radio-browser.info/), daje dostęp do tysięcy stacji z całego świata.
+  * **🎨 Lekki interfejs** — Szybki i prosty interfejs oparty na Tkinter z nowoczesnym motywem `ttkbootstrap`.
+  * **💾 Zapisywanie ustawień** — Aplikacja zapamiętuje Twoje ulubione stacje oraz ścieżkę do odtwarzacza `mpv`.
+  * **🌍 Dwa języki interfejsu** — Możliwość przełączania między językiem polskim (PL) a angielskim (EN).
 
-## ⚙️ Instalacja
+-----
 
-### 1. Uruchomienie z Pythona (wersja źródłowa)
-1. Pobierz repozytorium:
-   ```bash
-   git clone https://github.com/<twoj_login>/radiozaur.git
-   cd radiozaur
-````
+## ⚙️ Instalacja i Uruchomienie
 
-2. Zainstaluj wymagane biblioteki:
+### Wymagania wstępne
 
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Uruchom aplikację:
+  * **Python 3.7+** (dla wersji źródłowej)
+  * **Odtwarzacz `mpv`** — Radiozaur używa go do odtwarzania. Pobierz go z [**mpv.io**](https://mpv.io/) i upewnij się, że jest dostępny w systemie.
 
-   ```bash
-   python radiozaur.py
-   ```
+-----
 
----
+### **❖ Opcja 1: Wersja .EXE (dla Windows)**
 
-### 2. Wersja EXE (Windows)
+Najprostszy sposób na uruchomienie:
 
-1. Pobierz plik `Radiozaur.exe` z [Releases](../../releases/latest).
-2. Upewnij się, że w systemie jest dostępny `mpv.exe` (można pobrać z [mpv.io](https://mpv.io/)).
-3. Umieść `mpv.exe` w tym samym katalogu co `Radiozaur.exe`.
-4. Uruchom `Radiozaur.exe`.
+1.  Pobierz plik `Radiozaur.exe` z sekcji [podejrzany link usunięto].
+2.  Pobierz `mpv.exe` ze strony [mpv.io](https://mpv.io/).
+3.  Umieść pobrany plik `mpv.exe` w tym samym folderze, w którym znajduje się `Radiozaur.exe`.
+4.  Uruchom `Radiozaur.exe` i gotowe\!
 
----
+-----
 
-### 3. Kompilacja własna (Nuitka)
+### **❖ Opcja 2: Uruchomienie ze źródeł (Windows / Linux / macOS)**
 
-Możesz samodzielnie zbudować plik EXE:
+Dla użytkowników, którzy chcą uruchomić aplikację bezpośrednio z kodu:
+
+1.  **Sklonuj repozytorium:**
+
+    ```bash
+    git clone https://github.com/<twoj_login>/radiozaur.git
+    cd radiozaur
+    ```
+
+2.  **Zainstaluj zależności:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Uruchom aplikację:**
+
+    ```bash
+    python radiozaur.py
+    ```
+
+\<details\>
+\<summary\>\<b\>❖ Opcja 3: Samodzielna kompilacja do .EXE (zaawansowane)\</b\>\</summary\>
+
+Możesz samodzielnie zbudować plik wykonywalny przy użyciu Nuitka. Upewnij się, że masz zainstalowane odpowiednie pakiety Pythona, a następnie wykonaj polecenie w terminalu:
 
 ```bash
 nuitka --onefile --windows-icon-from-ico=radiozaur.ico --windows-console-mode=disable --enable-plugin=tk-inter radiozaur.py
 ```
 
----
+\</details\>
 
-## ❓ FAQ
+-----
 
-### 1. Nie działa odtwarzanie
+## 🚀 Jak Używać?
 
-Sprawdź, czy w katalogu aplikacji znajduje się `mpv.exe`.
-Radiozaur korzysta z odtwarzacza MPV jako backendu.
+1.  **Uruchom aplikację.**
+2.  Wybierz jedną ze stacji z listy i kliknij **▶️ Odtwórz**.
+3.  Aby znaleźć nową stację, wpisz jej nazwę (lub gatunek) w polu wyszukiwania i kliknij **🔍 Szukaj stacji**.
+4.  Wybierz interesującą Cię pozycję z wyników i rozpocznij odtwarzanie.
 
----
+-----
 
-### 2. Jak uruchomić nową stację?
+## 💡 FAQ - Często Zadawane Pytania
 
-W aplikacji wpisz nazwę stacji i kliknij „🔍 Szukaj stacji”,
-a następnie wybierz ją z listy i kliknij „▶️ Odtwórz”.
+**1. Odtwarzanie nie działa, nic nie słychać.**
 
----
+> Najprawdopodobniej brakuje pliku `mpv.exe` (w przypadku wersji dla Windows) lub `mpv` nie jest zainstalowany w systemie (dla wersji źródłowej). Upewnij się, że odtwarzacz jest dostępny i ewentualnie wskaż poprawną ścieżkę w ustawieniach aplikacji.
 
-### 3. Czy działa na Linux/Mac?
+**2. Czy aplikacja działa na systemach Linux lub macOS?**
 
-Tak, w wersji źródłowej (Python). Potrzebny jest tylko zainstalowany `mpv`.
+> Tak, wersja uruchamiana ze źródeł (przez Pythona) działa na każdym systemie, na którym można zainstalować `mpv` i biblioteki z pliku `requirements.txt`.
 
----
+**3. Dlaczego plik `.exe` jest taki duży?**
 
-### 4. Dlaczego exe jest tak duże?
+> Plik wykonywalny stworzony przez Nuitka zawiera w sobie nie tylko kod aplikacji, ale również cały interpreter Pythona i wszystkie wymagane biblioteki. Dzięki temu jest w pełni przenośny i nie wymaga instalacji Pythona na docelowym komputerze.
 
-Nuitka pakuje cały interpreter Pythona i biblioteki w jeden plik, dlatego exe ma kilkanaście MB.
-
----
+-----
 
 ## 📜 Licencja
 
-Radiozaur – odtwarzacz internetowych stacji radiowych
-Autor: **Maciek**
+**Radiozaur – odtwarzacz internetowych stacji radiowych** Autor: **Maciek**
 
-Projekt dostępny na licencji: **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**
+Projekt udostępniany jest na licencji **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.
 
-👉 Szczegóły: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
+👉 Pełna treść licencji: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
 
-### Warunki licencji:
+### W skrócie:
 
-* ✅ Możesz używać, kopiować i modyfikować projekt
-* ✅ Możesz udostępniać własne modyfikacje (z podaniem autora)
-* ❌ Nie wolno używać projektu w celach komercyjnych
-
-
-```
-
+  * ✅ **Możesz** używać, kopiować i modyfikować ten projekt na własne potrzeby.
+  * ✅ **Możesz** udostępniać swoje zmodyfikowane wersje, pod warunkiem podania autora oryginału.
+  * ❌ **Nie możesz** używać tego projektu ani jego pochodnych w celach komercyjnych.
